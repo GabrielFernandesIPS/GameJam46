@@ -65,11 +65,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
             leftCommand = false;
+            transform.rotation = Quaternion.Euler(0,0,0);
+
         }
         if (rightCommand)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
             rightCommand = false;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         
     }
