@@ -9,6 +9,7 @@ public class EnemyBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletRotation;
     [SerializeField] private float waitTimeToShoot;
+    private GameObject g;
     private float countTimeToShoot;
         
 
@@ -20,7 +21,6 @@ public class EnemyBehaviourScript : MonoBehaviour
     void Update()
     {
         countTimeToShoot += Time.deltaTime;
-        Debug.Log(countTimeToShoot);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -33,10 +33,18 @@ public class EnemyBehaviourScript : MonoBehaviour
             
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            Destroy(g);
+        }
+            
+    }
 
     private void Shoot()
     {
-        Instantiate(bullet, transform.position, bulletRotation.rotation);
+        g = Instantiate(bullet, transform.position, bulletRotation.rotation);
         countTimeToShoot = 0;
     }
 
